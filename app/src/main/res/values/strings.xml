@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">ABchat</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="log_out">Log Out</string>
+    <string name="create_a_new_account">"Create a New Account"</string>
+    <string name="login_to_your_account">"Login to your account"</string>
+    <string name="login">Login</string>
+    <string name="already_have_account">ALREADY HAVE ACCOUNT</string>
+    <string name="need_a_new_account">NEED A NEW ACCOUNT?</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_to_chats_page">Welcome to chats page</string>
+    <string name="welcome_to_friends_page">Welcome to friends page</string>
+    <string name="welcome_to_requests_page">Welcome to requests page</string>
+    <string name="hi_there_i_m_using_ab_chat_app">Hi there, I\'m using ABchat App !</string>
+    <string name="display_name">Display Name</string>
+    <string name="change_image">CHANGE IMAGE</string>
+    <string name="change_status">CHANGE STATUS</string>
+    <string name="save_changes">SAVE CHANGES</string>
+    <string name="your_status">Your Status</string>
+    <string name="user_default_status">User default status</string>
+    <string name="total_friends">Total Friends</string>
+    <string name="decline_friend_request">DECLINE FRIEND REQUEST</string>
+    <string name="display_image">Display Image</string>
+    <string name="send_friend_request">SEND FRIEND REQUEST</string>
+    <string name="current_user_status">Current User Status</string>
+    <string name="cancel_friend_request">Cancel Friend Request</string>
+    <string name="accept_friend_request">Accept Friend Request</string>
+    <string name="channel_name">MkChat_channel</string>
+    <string name="channel_description">MkChat_channel_description</string>
+    <string name="_00_00">00:00</string>
+    <string name="message">Message</string>
+    <string name="user_name">User Name</string>
+    <string name="phone_image">phone_image</string>
+    <string name="phone_number">Phone number...</string>
+    <string name="lock_image">lock image</string>
+    <string name="o_t_p">O.T.P</string>
+    <string name="send_verification">SEND VERIFICATION</string>
+    <string name="note_a_verification_code_will_be_sent_to_your_phone_number">Note : A verification code will be sent to your phone number.</string>
+    <string name="login_via_phone">Login via Phone</string>
+    <string name="verify_code">VERIFY CODE</string>
+    <string name="finish_account">FINISH ACCOUNT</string>
+    <string name="re_enter_password">Re-enter Password</string>
+    <string name="email_optional">Email(optional)</string>
+</resources>

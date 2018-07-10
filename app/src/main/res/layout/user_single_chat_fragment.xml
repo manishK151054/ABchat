@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:transitionName="imageTransition"
+        android:src="@drawable/default_avatar"
+        android:id="@+id/user_single_image"
+        tools:targetApi="lollipop" />
+
+    <TextView
+        android:id="@+id/user_single_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/user_single_image"
+        android:layout_marginLeft="22dp"
+        android:layout_marginStart="22dp"
+        android:layout_toEndOf="@+id/user_single_image"
+        android:layout_toRightOf="@+id/user_single_image"
+        android:transitionName="nameTransition"
+        android:text="@string/display_name"
+        android:textColor="@android:color/black"
+        android:textSize="18dp"
+        tools:targetApi="lollipop" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_single_online_image"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@id/user_single_name"
+        android:src="@drawable/online"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/user_single_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/user_single_image"
+        android:layout_alignLeft="@+id/user_single_name"
+        android:layout_alignStart="@+id/user_single_name"
+        android:layout_marginBottom="5dp"
+        android:transitionName="statusTransition"
+        android:text="@string/user_default_status"
+        tools:targetApi="lollipop" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:id="@+id/user_single_message_time"
+        android:layout_alignParentRight="true"
+        android:textSize="12sp"
+        android:text="@string/_00_00"
+        android:layout_marginTop="15dp"/>
+
+</RelativeLayout>

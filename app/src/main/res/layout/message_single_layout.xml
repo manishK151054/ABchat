@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@drawable/default_avatar"
+        android:id="@+id/message_single_profile_image"/>
+
+
+   <LinearLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:padding="10dp"
+       android:id="@+id/message_layout"
+       android:layout_toRightOf="@+id/message_single_profile_image"
+       android:layout_toEndOf="@+id/message_single_profile_image">
+
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="10dp"
+           android:layout_marginStart="10dp"
+           android:textStyle="bold"
+           android:textSize="16sp"
+           android:textColor="@color/white"
+           android:text="@string/user_name"
+           android:id="@+id/chat_userName_single_text_view" />
+
+           <ImageView
+               android:id="@+id/message_image"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="56dp"
+               android:layout_marginStart="56dp"
+               android:layout_marginRight="10dp"
+               android:layout_marginEnd="10dp"
+               android:layout_below="@id/time_single_text_view"
+               android:scaleType="centerCrop"/>
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="10dp"
+           android:layout_marginStart="10dp"
+           android:textSize="14sp"
+           android:textColor="@color/white"
+           android:text="@string/message"
+           android:id="@+id/message_single_text_view" />
+
+       </LinearLayout>
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="10dp"
+           android:layout_marginStart="10dp"
+           android:textSize="12sp"
+           android:textColor="@color/white"
+           android:text="@string/_00_00"
+           android:id="@+id/time_single_text_view" />
+
+   </LinearLayout>
+
+
+</RelativeLayout>

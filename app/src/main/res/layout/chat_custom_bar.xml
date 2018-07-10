@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:background="@color/colorPrimary">
+    
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/default_avatar"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:transitionName="imageTransition"
+        android:id="@+id/custom_bar_image"
+        tools:targetApi="lollipop" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:transitionName="nameTransition"
+        android:textColor="@color/white"
+        android:id="@+id/custom_bar_display_name"
+        android:text="Display Name"
+        tools:targetApi="lollipop" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:textColor="@color/white"
+        android:layout_below="@+id/custom_bar_display_name"
+        android:id="@+id/custom_bar_last_seen"
+        android:text="Last Seen"/>
+
+
+
+</RelativeLayout>

@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "139103788531",
+    "firebase_url": "https://abchat-d0220.firebaseio.com",
+    "project_id": "abchat-d0220",
+    "storage_bucket": "abchat-d0220.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139103788531:android:69bd983095e6d202",
+        "android_client_info": {
+          "package_name": "com.aapkabazzaar.abchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "139103788531-0ik98484srevk7c5e5fcf1h2a370hsu8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aapkabazzaar.abchat",
+            "certificate_hash": "842cc63cfcb12bf9cdb3deb6f6b13c39778f5618"
+          }
+        },
+        {
+          "client_id": "139103788531-0ujc1b26e2r37nmctphmmbmpf50lf0nm.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "139103788531-0ujc1b26e2r37nmctphmmbmpf50lf0nm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0TMSvgMcDBLnAxMUjMAauJvSnfQLYe4A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "139103788531-0ujc1b26e2r37nmctphmmbmpf50lf0nm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

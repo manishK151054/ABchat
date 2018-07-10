@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    tools:context=".ProfileActivity">
+
+    <TextView
+        android:id="@+id/profile_displayName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/profile_status"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="31dp"
+        android:text="@string/display_name"
+        android:transitionName="nameTransition"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="226dp"
+        tools:targetApi="lollipop" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27dp"
+        android:contentDescription="@string/display_image"
+        android:src="@drawable/default_avatar2"
+        android:transitionName="imageTransition"
+        tools:targetApi="lollipop" />
+
+    <TextView
+        android:id="@+id/profile_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/profile_total_friends"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="41dp"
+        android:transitionName="statusTransition"
+        android:text="@string/current_user_status"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        tools:targetApi="lollipop" />
+
+    <Button
+        android:id="@+id/profile_send_req_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/profile_decline_req_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:padding="15dp"
+        android:background="@drawable/button_style"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:text="@string/send_friend_request"
+        android:textColor="@android:color/white"
+        tools:targetApi="lollipop" />
+
+    <TextView
+        android:id="@+id/profile_total_friends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/profile_send_req_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="@string/total_friends"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/profile_decline_req_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_style"
+        android:padding="15dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="26dp"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:text="@string/decline_friend_request"
+        android:textColor="@android:color/white"
+        tools:targetApi="lollipop" />
+</RelativeLayout>
