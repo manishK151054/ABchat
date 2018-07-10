@@ -115,7 +115,6 @@ public class ChatActivity extends AppCompatActivity {
         mRootRef.keepSynced(true);
         mUsersRef.keepSynced(true);
         loadMessages();
-       // Toast.makeText(this, "messages loading...", Toast.LENGTH_SHORT).show();
         mRootRef.child("Friends").child(current_user_id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
