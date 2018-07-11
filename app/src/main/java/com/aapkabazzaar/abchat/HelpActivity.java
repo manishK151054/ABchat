@@ -21,10 +21,13 @@ public class HelpActivity extends Activity {
         toolbar.setTitle("Help Page");
         homeBtn = findViewById(R.id.button_home);
 
+        Bundle extras = getIntent().getExtras();
+        final Class nextActivityClass = (Class<Activity>) extras.getSerializable("EXTRA_ACTIVITY_CLASS");
+
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent homeIntent = new Intent(HelpActivity.this,StartActivity.class);
+                Intent homeIntent = new Intent(HelpActivity.this,nextActivityClass);
                 homeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(homeIntent);
                 finish();

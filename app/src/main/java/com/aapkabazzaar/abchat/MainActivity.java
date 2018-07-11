@@ -145,6 +145,11 @@ public class MainActivity extends AppCompatActivity {
             Intent usersIntent = new Intent(MainActivity.this,UsersActivity.class);
             startActivity(usersIntent);
         }
+        if(item.getItemId() == R.id.help_btn) {
+            Intent helpIntent = new Intent(MainActivity.this,HelpActivity.class);
+            helpIntent.putExtra("EXTRA_ACTIVITY_CLASS",MainActivity.class);
+            startActivity(helpIntent);
+        }
 
         return true;
     }

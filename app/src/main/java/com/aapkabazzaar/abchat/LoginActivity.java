@@ -190,6 +190,7 @@ public class LoginActivity extends AppCompatActivity {
         if (item.getItemId()==R.id.help_btn)
         {
             Intent helpIntent = new Intent(LoginActivity.this,HelpActivity.class);
+            helpIntent.putExtra("EXTRA_ACTIVITY_CLASS",LoginActivity.class);
             startActivity(helpIntent);
         }
         return true;

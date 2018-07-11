@@ -8,6 +8,10 @@
     <item
         android:id="@+id/main_all_btn"
         android:title="All Users" />
+
+    <item android:id="@+id/help_btn"
+        android:title="Help" />
+
     <item
         android:id="@+id/main_logout_btn"
         android:title="@string/log_out" />
