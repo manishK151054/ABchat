@@ -1,8 +1,13 @@
 package com.aapkabazzaar.abchat;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,11 +48,20 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private String uid;
     private Animation bottomToTop, topToBottom;
+    private ConstraintLayout constraintLayout;
+    private Snackbar snackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        constraintLayout = findViewById(R.id.constraintRegisterLayout);
+
+        if(!isConnectedToInternet(this)){
+            showSnackBar("Please check your internet connection",constraintLayout);
+        }
+
         mDisplayName = findViewById(R.id.reg_display_name);
         mEmail = findViewById(R.id.reg_email);
         mPassword = findViewById(R.id.reg_password);
@@ -98,6 +112,27 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private boolean isConnectedToInternet(Context context) {
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
+    public void showSnackBar(String message, ConstraintLayout constraintLayout)
+    {
+        snackbar = Snackbar
+                .make(constraintLayout, message, Snackbar.LENGTH_INDEFINITE).
+                        setAction("Ok", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                snackbar.dismiss();
+                            }
+                        });
+        snackbar.show();
     }
 
     private void register_user(final String display_name, final String email, final String password) {

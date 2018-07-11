@@ -1,12 +1,17 @@
 package com.aapkabazzaar.abchat;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,7 +43,8 @@ public class ProfileActivity extends AppCompatActivity {
     String req_type;
     private FirebaseAuth mAuth;
     FirebaseUser mCurrentUser;
-
+    private RelativeLayout relativeLayout;
+    private Snackbar snackbar;
     private String mCurrent_state;
 
     @Override
@@ -58,6 +64,12 @@ public class ProfileActivity extends AppCompatActivity {
         mFriendReqDatabase.keepSynced(true);
         mNotificationDatabase.keepSynced(true);
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        relativeLayout = findViewById(R.id.relativeProfileLayout);
+
+        if(!isConnectedToInternet(this)){
+            showSnackBar("Please check your internet connection",relativeLayout);
+        }
 
         mDisplayName = findViewById(R.id.profile_displayName);
         mDisplayStatus = findViewById(R.id.profile_status);
@@ -259,6 +271,27 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private boolean isConnectedToInternet(Context context) {
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
+    public void showSnackBar(String message, RelativeLayout relativeLayout)
+    {
+        snackbar = Snackbar
+                .make(relativeLayout, message, Snackbar.LENGTH_INDEFINITE).
+                        setAction("Ok", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                snackbar.dismiss();
+                            }
+                        });
+        snackbar.show();
     }
 
     @Override

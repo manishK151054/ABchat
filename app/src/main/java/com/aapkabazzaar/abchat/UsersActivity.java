@@ -3,9 +3,12 @@ package com.aapkabazzaar.abchat;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +19,7 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -32,11 +36,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UsersActivity extends AppCompatActivity {
 
-    Toolbar mToolbar;
+    private Toolbar mToolbar;
     private RecyclerView mUsersList;
     private DatabaseReference mUsersDatabase;
-    Query usersQuery;
-    FirebaseRecyclerAdapter<Users, UsersViewHolder> firebaseRecyclerAdapter;
+    private Query usersQuery;
+    private FirebaseRecyclerAdapter<Users, UsersViewHolder> firebaseRecyclerAdapter;
+    private Snackbar snackbar;
+    private RelativeLayout relativeLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +54,12 @@ public class UsersActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("All Users");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        relativeLayout = findViewById(R.id.relativeUsersLayout);
+
+        if(!isConnectedToInternet(this)){
+            showSnackBar("Please check your internet connection",relativeLayout);
+        }
+
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
         mUsersDatabase.keepSynced(true);
         usersQuery = mUsersDatabase.orderByKey();
@@ -55,6 +68,27 @@ public class UsersActivity extends AppCompatActivity {
         mUsersList.setHasFixedSize(true);
         mUsersList.setLayoutManager(new LinearLayoutManager(this));
 
+    }
+
+    private boolean isConnectedToInternet(Context context) {
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
+    public void showSnackBar(String message, RelativeLayout relativeLayout)
+    {
+        snackbar = Snackbar
+                .make(relativeLayout, message, Snackbar.LENGTH_INDEFINITE).
+                        setAction("Ok", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                snackbar.dismiss();
+                            }
+                        });
+        snackbar.show();
     }
 
     @Override

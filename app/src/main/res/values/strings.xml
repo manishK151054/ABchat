@@ -4,8 +4,8 @@
     <string name="password">Password</string>
     <string name="create_account">Create Account</string>
     <string name="log_out">Log Out</string>
-    <string name="create_a_new_account">"Create a New Account"</string>
-    <string name="login_to_your_account">"Login to your account"</string>
+    <string name="create_a_new_account">Create a New Account</string>
+    <string name="login_to_your_account">Login to your account</string>
     <string name="login">Login</string>
     <string name="already_have_account">ALREADY HAVE ACCOUNT</string>
     <string name="need_a_new_account">NEED A NEW ACCOUNT?</string>
@@ -35,7 +35,7 @@
     <string name="message">Message</string>
     <string name="user_name">User Name</string>
     <string name="phone_image">phone_image</string>
-    <string name="phone_number">Phone number...</string>
+    <string name="phone_number">Phone number…</string>
     <string name="lock_image">lock image</string>
     <string name="o_t_p">O.T.P</string>
     <string name="send_verification">SEND VERIFICATION</string>
@@ -45,4 +45,6 @@
     <string name="finish_account">FINISH ACCOUNT</string>
     <string name="re_enter_password">Re-enter Password</string>
     <string name="email_optional">Email(optional)</string>
+    <string name="help">Help</string>
+    <string name="guide">Please read carefully to get started.\n\n\n Let\'s get started :\n\n 1)You need to have an email id to create an account for using this app.\n\n 2)You should use a valid email id, so that you can recover your account later even if you loose your password by clicking on forgot password option in the Login Page.\n\n 3)You need to create a strong but easy password to login to the app and to secure your privacy. Password can be easy to remember or you can always reset it as mentioned above.\n\n 4)Provide a valid and actual name ,so that people can find you and know you.\n\n 5)We recommend you to upload your profile picture from the Account Settings page using the change image button. Providing your picture will help people easily recognise you and find you as there can be several persons with the same name.\n\n 6)You can send a friend request to others and wait to chat with them until they accept your friend request. The same goes with other people so, you may receive friend requests from other people and accept them to connect with them. This procedure is maintained to stop users from spamming other unknown users over the platform and provides control over their activity.\n\n 7)There is a decline friend request button only when you receive one. You can see it by opening the profile of the user from whom you received it. Decline friend request will stop the user from connecting to you.\n\n 8)There are three important sections : Chat Page, on which you can see all you chats. Friends Page , on which you can see whom you are friends with. Requests Page , on which you can see all the friend requests you have sent or received.\n\n 9)After you are friends , there is an unfriend option in the user\'s profile whom you are friends with, in case you want them to stop reaching out to you and unable to text you. But this will also stop you from texting them, while you can always become friends again and start having a chat again.\n\n 10)More features coming soon. Stay connected with us.\n\n\n Thank You.</string>
 </resources>

@@ -3,6 +3,7 @@
     package="com.aapkabazzaar.abchat">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -22,6 +23,7 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -41,16 +43,21 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChatActivity"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".UsersActivity"
-            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".ChatActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".UsersActivity"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".StatusActivity"
-            android:parentActivityName=".SettingsActivity"/>
+        <activity
+            android:name=".StatusActivity"
+            android:parentActivityName=".SettingsActivity" />
         <activity android:name=".StartActivity" />
-        <activity android:name=".ForgotPasswordActivity"
-            android:parentActivityName=".LoginActivity"></activity>
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:parentActivityName=".StartActivity" />
+        <activity android:name=".HelpActivity"></activity>
     </application>
 
 </manifest>

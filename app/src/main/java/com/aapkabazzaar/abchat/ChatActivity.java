@@ -2,8 +2,11 @@ package com.aapkabazzaar.abchat;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,6 +68,8 @@ public class ChatActivity extends AppCompatActivity {
     private static final int TOTAL_ITEMS_TO_LOAD = 10;
     private static final int GALLERY_PICK =1;
     private StorageReference mImageStorage;
+    private RelativeLayout relativeLayout;
+    private Snackbar snackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +85,13 @@ public class ChatActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        relativeLayout = findViewById(R.id.relativeChatLayout);
+
+        if(!isConnectedToInternet(this)){
+            showSnackBar("Please check your internet connection",relativeLayout);
+        }
+
         mAuth = FirebaseAuth.getInstance();
         if (mAuth!=null)
         {
@@ -206,6 +219,27 @@ public class ChatActivity extends AppCompatActivity {
             }
         }); */
 
+    }
+
+    private boolean isConnectedToInternet(Context context) {
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
+    public void showSnackBar(String message, RelativeLayout relativeLayout)
+    {
+        snackbar = Snackbar
+                .make(relativeLayout, message, Snackbar.LENGTH_INDEFINITE).
+                        setAction("Ok", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                snackbar.dismiss();
+                            }
+                        });
+        snackbar.show();
     }
 
     @Override

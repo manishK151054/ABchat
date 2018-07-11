@@ -1,5 +1,8 @@
 package com.aapkabazzaar.abchat;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
@@ -8,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,6 +24,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     private Button mResetBtn;
     private TextInputLayout emailText;
     private FirebaseAuth mAuth;
+    private RelativeLayout relativeLayout;
+    private  Snackbar snackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +36,16 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         mResetBtn = findViewById(R.id.reset_pass_btn);
         emailText = findViewById(R.id.email_input);
         mToolbar = findViewById(R.id.reset_password_appBar);
+        relativeLayout = findViewById(R.id.relativeForgotPasswordLayout);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Reset Password");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        relativeLayout = findViewById(R.id.relativeUsersLayout);
+
+        if(!isConnectedToInternet(this)){
+            showSnackBar("Please check your internet connection",relativeLayout);
+        }
 
         mResetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +54,27 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 resetPassword(email);
             }
         });
+    }
+
+    private boolean isConnectedToInternet(Context context) {
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
+    public void showSnackBar(String message, RelativeLayout relativeLayout)
+    {
+        snackbar = Snackbar
+                .make(relativeLayout, message, Snackbar.LENGTH_INDEFINITE).
+                        setAction("Ok", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                snackbar.dismiss();
+                            }
+                        });
+        snackbar.show();
     }
 
     private void resetPassword(String email) {

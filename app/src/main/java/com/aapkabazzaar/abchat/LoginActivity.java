@@ -1,13 +1,20 @@
 package com.aapkabazzaar.abchat;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -30,7 +37,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private TextInputLayout mLoginEmail;
     private TextInputLayout mLoginPassword;
-
     private Toolbar mToolbar;
     private TextView textView , mReg_btn, mForgotPassword_btn;
     private CircleImageView logoView;
@@ -39,6 +45,9 @@ public class LoginActivity extends AppCompatActivity {
     private Animation bottomToTop, topToBottom;
     private FirebaseAuth mAuth;
     private DatabaseReference mUserDatabase;
+    private ConstraintLayout constraintLayout;
+    private Snackbar snackbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +59,13 @@ public class LoginActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Login Page");
+
+        constraintLayout = findViewById(R.id.constraintLoginLayout);
+
+
+        if(!isConnectedToInternet(this)){
+            showSnackBar("Please check your internet connection",constraintLayout);
+        }
 
         mLoginEmail = findViewById(R.id.login_email);
         mLoginPassword = findViewById(R.id.login_password);
@@ -74,8 +90,8 @@ public class LoginActivity extends AppCompatActivity {
         mForgotPassword_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent registerIntent = new Intent(LoginActivity.this,ForgotPasswordActivity.class);
-                startActivity(registerIntent);
+                Intent forgotPasswordIntent = new Intent(LoginActivity.this,ForgotPasswordActivity.class);
+                startActivity(forgotPasswordIntent);
                 finish();
             }
         });
@@ -111,6 +127,27 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    private boolean isConnectedToInternet(Context context) {
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
+    public void showSnackBar(String message, ConstraintLayout constraintLayout)
+    {
+        snackbar = Snackbar
+                .make(constraintLayout, message, Snackbar.LENGTH_INDEFINITE).
+                        setAction("Ok", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                snackbar.dismiss();
+                            }
+                        });
+        snackbar.show();
+    }
+
     private void loginUser(String email, String password) {
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -137,6 +174,25 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.help_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+
+        if (item.getItemId()==R.id.help_btn)
+        {
+            Intent helpIntent = new Intent(LoginActivity.this,HelpActivity.class);
+            startActivity(helpIntent);
+        }
+        return true;
     }
 }
 

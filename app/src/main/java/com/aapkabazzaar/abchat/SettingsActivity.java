@@ -1,14 +1,19 @@
 package com.aapkabazzaar.abchat;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,9 +57,9 @@ public class SettingsActivity extends AppCompatActivity {
     private Button mStatusBtn;
     private Button mImageBtn;
     private FirebaseAuth mAuth;
-
+    private Snackbar snackbar;
+    private RelativeLayout relativeLayout;
     private static final int GALLERY_PICK = 1;
-
     private StorageReference mImageStorage;
     private ProgressDialog mProgressDialog;
 
@@ -68,6 +73,11 @@ public class SettingsActivity extends AppCompatActivity {
         mStatus = findViewById(R.id.settings_status);
         mStatusBtn = findViewById(R.id.settings_status_btn);
         mImageBtn = findViewById(R.id.settings_image_btn);
+        relativeLayout = findViewById(R.id.relativeSettingsLayout);
+
+        if(!isConnectedToInternet(this)){
+            showSnackBar("Please check your internet connection",relativeLayout);
+        }
 
         mAuth = FirebaseAuth.getInstance();
         mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -142,6 +152,27 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
+    private boolean isConnectedToInternet(Context context) {
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
+    public void showSnackBar(String message, RelativeLayout relativeLayout)
+    {
+        snackbar = Snackbar
+                .make(relativeLayout, message, Snackbar.LENGTH_INDEFINITE).
+                        setAction("Ok", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                snackbar.dismiss();
+                            }
+                        });
+        snackbar.show();
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -202,9 +233,9 @@ public class SettingsActivity extends AppCompatActivity {
                             uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> thumb_task) {
-                                    String thumb_downloadUrl = thumb_task.getResult().getDownloadUrl().toString();
-                                    if (thumb_task.isSuccessful()){
 
+                                    if (thumb_task.isSuccessful()){
+                                        String thumb_downloadUrl = thumb_task.getResult().getDownloadUrl().toString();
                                         Map update_hashMap = new HashMap();
                                         update_hashMap.put("image",download_url);
                                         update_hashMap.put("thumb_image",thumb_downloadUrl);
