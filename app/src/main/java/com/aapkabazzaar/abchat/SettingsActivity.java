@@ -146,7 +146,7 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode == GALLERY_PICK && requestCode == RESULT_OK) {
+        if(requestCode == GALLERY_PICK && resultCode == RESULT_OK) {
             Uri imageUri = data.getData();
             CropImage.activity(imageUri).setAspectRatio(1,1).start(this);
 
