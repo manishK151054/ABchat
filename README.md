@@ -1,6 +1,6 @@
 # ABchat
 
-## A whatsapp like chat application using Java.
+## A whatsapp like Android chat application using Java, Android Studio & Firebase.
 
 ### Screenshots:-
 <p float="left">
